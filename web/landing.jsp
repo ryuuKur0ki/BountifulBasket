@@ -20,8 +20,10 @@
             <div class="main-container">
                 <div class="site-greetings">
                     <h2>Welcome to...</h2>
-                    <img id="site-logo" src="${pageContext.request.contextPath}/sources/basketlogoblack.png">
-                    <h1>Bountiful Basket</h1>
+                    <div class="logo-holder">
+                        <img id="site-logo" src="${pageContext.request.contextPath}/sources/basketlogoblack.png">
+                        <div class="logo-text-holder"><h1>Bountiful Basket</h1></div>
+                    </div>
                 </div>
                 <br>
                 <div class="button-holder">
@@ -38,10 +40,10 @@
         </main>
                 
         <footer>
-            <div class="footer-text">
-                <p>This website was created in fulfillment of the course requirements for ICS2608.</p>
-                <p>Made By: Matthew Articulo, Thomas De Leon, Lorenzo Tzar Macuja, and Joseph Isaac Robles - 2CSB</p>
-            </div>
+            <div class="footer-text"><p>This website was created in fulfillment of the course requirements for ICS2608.</p></div>
+            <div class="footer-text"><p>Made By: Articulo, De Leon, T., Macuja, Robles, J. - 2CSB</p></div>    
+                
+            
         </footer>
                 
     </body>
