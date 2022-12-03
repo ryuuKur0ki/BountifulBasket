@@ -12,8 +12,7 @@
         
         <header>
             <nav class="nav-bar">                
-                <img id="site-logo" src="${pageContext.request.contextPath}/sources/basketlogoblack.png">
-                <h1>Bountiful Basket</h1>
+                <img id="site-logo" src="${pageContext.request.contextPath}/sources/basketlogowhite.png">                
             </nav>
         </header>
             
