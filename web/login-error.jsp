@@ -24,17 +24,18 @@
             <hr class="line-break">
             <div class="half-side">
                 <%-- TODO: add link to servlet handling user login and session management--%>
-                <form  method="post">                    
+                <form  method="post">
                     <h2>USERNAME</h2>
                     <input type="text" id="username" name="username" class="text-entry" maxlength="20" required>
                     <div class="spacer"></div>
                     <h2>PASSWORD</h2>
                     <input type="text" id="username" name="username" class="text-entry" maxlength="20" required>
                     <div class="spacer"></div>
-                    <input type="submit" class="special-button" value="Check Ticket">                    
-                    <h3 class="error-text"></h3>
-                </form>                
-            </div>                 
+                    <input type="submit" class="special-button" value="Check Ticket">
+                    <h3 class="error-text">The username or password you entered is either incorrect or is not associated with a registered account. Please try again.</h3>
+                </form>
+                
+            </div>            
         </main>
                 
         <footer>

@@ -8,7 +8,7 @@
     --secondary: #588157;
     --tertiary: #A3B18A;
     --accent: #ED7D3A;      /*    Orange, "Mango Tango"     */
-    --special: #EF2D56;     /*    Red, "Red Crayola"     */    
+    --error: #EF2D56;     /*    Red, "Red Crayola"     */    
     --dark: #363537;        /*    "Jet"     */
     --largebg: #DAD7CD;     /*    Beige     */
     
@@ -80,6 +80,11 @@ main {
 
 a:hover {
     cursor: pointer;
+}
+
+.emphasized {
+    color: var(--secondary);
+    font-weight: bold;
 }
 /* ----------          END       ---------- */
 
@@ -183,14 +188,9 @@ a:hover {
     font-family: var(--special);
 }
 
-.site-information p {
+.body-text {
     text-align: center;
     font-family: var(--body-text);
     color: var(--dark);
     font-size: 16pt;
-}
-
-.emphasized {
-    color: var(--secondary);
-    font-weight: bold;
 }
