@@ -8,15 +8,25 @@
     </head>
     
     <body>
-        
+        <%
+            response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+            response.setHeader("Expires", "0");            
+        %>
         <header>
             <nav class="nav-bar">                
-                <a class="toLanding" href="landing.jsp"><img id="site-logo" src="${pageContext.request.contextPath}/sources/basketlogowhite.png"></a>               
+                <a class="toLanding" href="landing.jsp"><img id="site-logo" src="${pageContext.request.contextPath}/sources/basketlogowhite.png"></a>
+                <% if (session.getAttribute("userID") != null) { %>
+                <form action="UserLogout.do" method="post">                                        
+                    <input type="submit" value="Log Out">                    
+                </form>
+                <% } %>
             </nav>
         </header>
             
         <main>
             <h1>shop</h1>
+            <% if (session != null) { %>
+            <% } %>
         </main>
                 
         <footer>
