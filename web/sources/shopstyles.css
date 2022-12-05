@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
 
 :root{
     /*    Colors!     */
@@ -47,7 +48,7 @@ header, footer {
 
 header {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     color: #FFFFFF;
     top: 0;
@@ -70,6 +71,10 @@ header #site-logo {
     height: 80px;
 }
 
+header #user-logo {
+    height: 50px;
+}
+
 main {
     flex: 1 1 auto;
     display: flex;
@@ -88,3 +93,74 @@ a:hover {
 }
 /* ----------          END       ---------- */
 
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.profile-holder {
+    display: flex;
+    width: 30%;
+    align-items: center;
+    justify-content: space-around;
+    font-family: var(--headings2);
+    font-weight: bold;
+}
+
+.header-button {
+    margin: 0 2em;
+    border-style: solid;
+    border-color: var(--secondary);
+    border-radius: 35px;
+    color: #FFFFFF;
+    height: 40px;
+    width: 100px;
+    background-color: var(--tertiary);
+    font-family: var(--headings2);    
+    font-size: 1rem;
+    text-transform: capitalize; 
+}
+
+.header-button:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 8px var(--tertiary);
+}
+
+.left-side, .right-side {
+    border: 2px solid var(--primary);
+    border-radius: 15px;    
+    height: 90%;
+    min-height: 90%;
+}
+
+.left-side {    
+    width: 80%;    
+    border-color: var(--secondary);
+    box-shadow: 0px 0px 8px var(--primary);
+    margin: 0 3%;
+    justify-content: center;
+}
+
+.right-side {    
+    box-shadow: 0px 0px 8px var(--tertiary);
+    width: 20%;
+    margin-right: 3%;
+}
+
+.left-side h1, .right-side h1 {
+    text-align: center;
+    font-size: 24pt;
+    color: var(--secondary);
+    text-shadow: 2px 2px 3px var(--tertiary);
+    font-family: var(--special);
+}
+
+.line-break {
+    border-width: 3px;
+    width: 80%;
+    color: var(--secondary);
+    border-style: solid none none;
+    margin: 0 auto;
+}

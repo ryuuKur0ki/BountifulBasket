@@ -33,7 +33,7 @@ public class LogoutServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession currentSession = request.getSession();
         currentSession.invalidate();
-        response.sendRedirect("landing.jsp");
+        response.sendRedirect("login.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

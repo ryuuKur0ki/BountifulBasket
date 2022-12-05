@@ -27,7 +27,7 @@
                 <br>
                 <div class="button-holder">
                     <a class="toLogin" href="login.jsp"><button class="common-button">User Log In</button></a>
-                    <a class="toShop" href="shop.jsp"><button class="common-button">Go to Shopfront</button></a>
+                    <a class="toShop" href="shop.jsp"><button class="common-button">Browse Shop</button></a>
                     <a class="toShop" href="${pageContext.request.contextPath}/sources/documentation.pdf" target="_blank"><button class="special-button common-button">Check Documentation</button></a>
                 </div>     
                 <hr class="line-break">
