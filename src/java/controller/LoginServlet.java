@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.ShopItem;
 
 @WebServlet(name = "LoginServlet", urlPatterns = {"/UserLogin.do"})
 public class LoginServlet extends HttpServlet {
@@ -26,9 +28,13 @@ public class LoginServlet extends HttpServlet {
             if (key.equals(enteredUN) == true) {
                 if (value.equals(enteredPW) == true) {
                     HttpSession userSession = request.getSession();
+                    ArrayList<ShopItem> cart = new ArrayList<>();
                     double total = 0.0;
                     userSession.setAttribute("userID", enteredUN);
                     userSession.setAttribute("totalCost", total);
+                    if (userSession.getAttribute("userCart") == null){
+                        userSession.setAttribute("userCart", cart);
+                    }                    
                     response.sendRedirect("shop.jsp");
                     return;
                 }

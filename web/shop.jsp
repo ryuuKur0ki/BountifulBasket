@@ -1,4 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="model.*" %>
+<%@page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -40,21 +42,44 @@
         </header>
             
         <main>
-            <div class="left-side">
-                <h1>Our Products</h1>
-                <hr class="line-break">
-                <div class="stock-holder">
+            <div class="side-wrapper">
+                <div class="left-side">
+                    <h1>Our Products</h1>
+                    <hr class="line-break">
+                    <div class="stock-holder">
+                        <%                        
+                            ArrayList<ShopItem> stockList = new ShopInitializer().getStock();
+                            for (int i = 0; i < stockList.size(); i++) {
+                                ShopItem currentItem = stockList.get(i);
+                        %>
+                        <div class="shop-item">
+                            <img class="thumbnail" src="${pageContext.request.contextPath}/sources/img/<%=currentItem.getPic()%>">
+                            <h3><%out.print(currentItem.getName());%></h3>
+                            <p>₱<%out.print(currentItem.getPrice());%></p>
+                            <%-- TO DO: change condition to != once testing is done. --%>
+                            <%
+                                if (session.getAttribute("userID") == null) {
+                            %>
+                            <input class="addcart" type="submit" value="Add to Cart">
+                            <%  } %>                        
+                        </div>
+                        <%  } %>
+                    </div>
                 </div>
-            </div>
-            <%-- TO DO: change condition to != once testing is done. --%>
-            <% if (session.getAttribute("userID") == null) { %>
-            <div class="right-side">
-                <h1>Your Basket</h1>
-                <hr class="line-break">
-                <div class="cart-items">
+                <%-- TO DO: change condition to != once testing is done. --%>
+                <% if (session.getAttribute("userID") == null) { %>
+                <div class="right-side">
+                    <h1>Your Basket</h1>
+                    <hr class="line-break">
+                    <div class="cart-items">
+                    </div>
+                    <%-- TO DO: add action to checkout servlet. --%>
+                    <form method="post">
+                        <input class="special-button" name="checkout" type="submit" value="Check Out">
+                    </form>
                 </div>
+                <% }%>
             </div>
-            <% }%>
         </main>
                 
         <footer>

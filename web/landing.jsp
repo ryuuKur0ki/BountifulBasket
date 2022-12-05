@@ -34,7 +34,7 @@
                 <div class="site-information">
                     <h2>Take part in the Bountiful Harvest!</h2>
                     <p class="body-text"><span class="emphasized">Bountiful Basket</span> is a simple online store which aims to provide an easy and hassle-free way for customers to purchase a
-                        variety of fruits and vegetables sourced from local Philippine farmers.</p>
+                        variety of fruits and vegetables sourced from local Philippine farmers in bulk quantities.</p>
                     <p class="body-text">By shopping at <span class="emphasized">Bountiful Basket</span>, you can extend a helping hand and support our local farmers without having to leave
                         the comfort of your own home!</p>
                     <p class="body-text">We hope you have a wonderful time exploring our large selection of freshly grown and locally-produced fruits and vegetables!</p>
