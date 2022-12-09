@@ -222,7 +222,6 @@ nav {
 
 .special-button {    
     border-style: solid;
-    border-color: var(--primary);
     border-radius: 30px;
     height: 70px;
     width: 90%;
@@ -315,6 +314,7 @@ nav {
     line-height: 0.8;
     background-color: transparent;
     margin: 0 auto;
+    color: var(--dark);
 }
 
 .cart-info input:focus {        

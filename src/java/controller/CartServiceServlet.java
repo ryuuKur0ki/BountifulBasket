@@ -34,19 +34,7 @@ public class CartServiceServlet extends HttpServlet {
         ArrayList<ShopItem> cartContents = (ArrayList<ShopItem>) currentSession.getAttribute("userCart");                        
         
         if (addCartPressed != null) {
-            ShopItem addedItem = util.retrieveItemByID(stockList, addCartPressed);
-            /*
-            ShopItem oldItem = null;
-        
-            for (ShopItem item : cartContents) {
-                if (item.getID().equals(addedItem.getID())) {
-                    oldItem = item;
-                    addedItem.setQuantity(addedItem.getQuantity() + oldItem.getQuantity());                
-                }
-            }
-        
-            cartContents.remove(oldItem);
-            */
+            ShopItem addedItem = util.retrieveItemByID(stockList, addCartPressed);            
             cartContents.add(addedItem);
             currentSession.setAttribute("userCart", cartContents);        
             response.sendRedirect("shop.jsp");

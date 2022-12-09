@@ -93,59 +93,13 @@ a:hover {
 }
 /* ----------          END       ---------- */
 
-nav {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-}
-
-.profile-holder {
-    display: flex;
-    width: 30%;
-    align-items: center;
-    justify-content: space-around;
-    font-family: var(--headings2);
-    font-weight: bold;
-}
-
-.header-button {
-    margin: 0 2em;
-    border-style: solid;
-    border-color: var(--secondary);
-    border-radius: 35px;
-    color: #FFFFFF;
-    height: 40px;
-    width: 100px;
-    background-color: var(--tertiary);
-    font-family: var(--headings2);    
-    font-size: 1rem;
-    text-transform: capitalize; 
-}
-
-.header-button:hover {
-    cursor: pointer;
-    box-shadow: 0px 0px 8px var(--tertiary);
-}
-
-.big-side {
-    height: 100%;
-    width: 100%;
-    padding: 2rem 0;
+.main-wrapper {
+    width: 80%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-.cart-items, .after-items {
-    width: 90%;
-    display: flex;
-    background-color: var(--tertiary);
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;    
-    margin: 0 auto;
+    text-align: center;
 }
 
 h2 {
@@ -157,118 +111,31 @@ h2 {
     font-family: var(--special);
 }
 
-.top-table, .bottom-table {
-    table-layout: fixed;
+.main-wrapper #site-logo {
+    width: 20%;
+    max-width: 20%;
+    height: 20%;
+    max-height: 20%;
+}
+
+.body-text {
+    text-align: center;
+    font-family: var(--body-text);
+    color: var(--dark);
+    font-size: 14pt;
+}
+
+.button-holder {
+    margin: 1em 0;
     width: 100%;
-}
-
-.top-table th {
-    width: 20%;
-    font-family: var(--headings2);
-    color: #FFFFFF;
-    font-size: 20pt;
-    padding: 0.5em 0;
-    text-align: center;
-    text-shadow: .5px .5px 3px var(--secondary);
-}
-
-.top-table td {
-    width: 20%;
-    height: 30%;
-    text-align: center;
-}
-
-.smallthumb {
-    height: 125px;
-    width: 125px;
-    max-width: 70%;
-    object-fit: cover;
-    border: 1px solid var(--secondary);
-    border-radius: 5px;
-}
-
-.removeCartButton {    
-    width: 70%;
-    max-width: 70%;
-    margin: 0 auto;
-    padding: 1em 0;
-    height: 30%;
-    border-style: solid;
-    border-color: var(--primary);
-    border-radius: 30px;
-    background-color: var(--error);    
-    color: #FFFFFF;
-    font-family: var(--headings2);
-}
-
-.removeCartButton:hover {
-    cursor: pointer;
-    box-shadow: 0px 0px 8px var(--error);
-}
-
-.top-table td p, .bottom-table td p {
     display: inline-block;
-    font-family: var(--body-text);
-    font-size: 18pt;
-    line-height: 0.8;
-    width: 80%;
-    white-space: wrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    overflow-wrap: break-word;
-    color: var(--dark);
-}
-
-.top-table td h3 {
-    display: inline-block;
-    font-family: var(--headings2);
-    font-size: 16pt;
-    line-height: 0.8;
-    width: 80%;
-    color: var(--dark);
-}
-
-.top-table td input {
-    width: 60%;
-    border: none;
-    border-bottom: 2px solid var(--primary);
-    font-family: var(--body-text);
-    font-weight: bold;
-    font-size: 16pt;
-    color: var(--dark);
-    line-height: 0.8;
-    background-color: transparent;
-    text-align: center;
-    margin: 0 auto;
-}
-
-.line-break {
-    border-width: 3px;
-    width: 95%;
-    color: var(--primary);
-    border-style: solid none none;
-    margin: 2em 0;
-}
-
-.bottom-table td {
-    width: 50%;
-    height: 30%;
-    text-align: center;
-}
-
-.bottom-table td h3 {
-    font-family: var(--headings2);
-    color: #FFFFFF;
-    font-size: 20pt;
-    text-align: right;
-    text-shadow: .5px .5px 3px var(--secondary);
 }
 
 .special-button {    
     border-style: solid;
     border-radius: 30px;
     height: 70px;
-    width: 90%;
+    width: 35%;
     color: #FFFFFF;    
     font-family: var(--headings2);
     font-size: 1.2rem;
@@ -276,7 +143,8 @@ h2 {
     border-color: var(--primary);
     background-color: var(--secondary);
     display: block;
-    margin: 2em auto;
+    margin: 1em 3em;
+    float: right;
 }
 
 .special-button:hover {
@@ -288,15 +156,16 @@ h2 {
     border-style: solid;
     border-radius: 30px;
     height: 70px;
-    width: 90%;
+    width: 35%;
     color: #FFFFFF;    
     font-family: var(--headings2);
     font-size: 1.2rem;
     font-weight: bold;
-    border-color: var(--secondary);
-    background-color: var(--teriary );
+    border-color: var(--primary);
+    background-color: var(--tertiary);
     display: block;
-    margin: 2em auto;
+    margin: 1em 3em;
+    float: left;
 }
 
 .common-button:hover {

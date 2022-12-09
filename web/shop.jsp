@@ -87,9 +87,7 @@
                                 <img class="smallthumb" src="${pageContext.request.contextPath}/sources/img/<%=cartItem.getPic()%>">                                
                                 <div class="cart-info">
                                     <h3><%out.print(cartItem.getName());%></h3>
-                                    <p>₱<%out.print(cartItem.getPrice());%></p>                                    
-                                    <%--<p><%out.print(cartItem.getQuantity());%></p>--%>                                                                
-                                  
+                                    <p>₱<%out.print(cartItem.getPrice());%></p>                                                                                                 
                                     <input name="<%=cartItem.getID()%>" type="number" value="<%=cartItem.getQuantity()%>" min="1" max="99">
                                 </div>
                                     <button class="removeCartButton" type="submit" name="removedItem" value="<%=cartItem.getID()%>">Remove</button>             

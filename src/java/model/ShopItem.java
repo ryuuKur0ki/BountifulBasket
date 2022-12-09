@@ -2,6 +2,7 @@ package model;
 
 public class ShopItem {
     double itemPrice;
+    double totalPrice;
     int quantity = 1;
     String itemName;
     String imgSource;
@@ -24,9 +25,13 @@ public class ShopItem {
         this.imgSource = givenImg;
     }
     
+    public void setTotal() {
+        this.totalPrice = this.itemPrice * this.quantity;
+    }
+    
     // Getters
-    public double getTotal() {
-        return this.itemPrice * this.quantity;
+    public double getTotal(){
+        return totalPrice;
     }
     
     public int getQuantity(){
@@ -47,5 +52,5 @@ public class ShopItem {
     
     public String getPic() {
         return imgSource;
-    }
+    }    
 }

@@ -13,66 +13,46 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.*;
+import model.ShopItem;
 
-/**
- *
- * @author Admin
- */
-@WebServlet(name = "CheckoutHandler", urlPatterns = {"/Checkout.do"})
-public class CheckoutHandler extends HttpServlet {
+@WebServlet(name = "SuccessServlet", urlPatterns = {"/Order.done"})
+public class SuccessServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession currentSession = request.getSession();
-        
-        if (currentSession.getAttribute("userID") == null) {
-            response.sendRedirect("landing.jsp");
-            return;
-        }
-        
-        String removeCartPressed = request.getParameter("removedItem");
-        String wantsBack = request.getParameter("returnShop");
-        String wantsProceed = request.getParameter("proceedCheckout");
-        ArrayList<ShopItem> cartContents = (ArrayList<ShopItem>) currentSession.getAttribute("userCart");        
-        ArrayList<ShopItem> stockList = new ShopInitializer().getStock();
-        CartUtils util = new CartUtils();
-        double totalCost = 0.0;
-        
-        for (ShopItem item : cartContents) {
-            item.setTotal();
-            totalCost += item.getTotal();
-        }
-        currentSession.setAttribute("totalCost", totalCost);
-        
-        if (removeCartPressed != null) {                      
-            // Actually for removing items in the cart.
-            ShopItem forRemoval = util.retrieveItemByID(stockList, removeCartPressed);
-            ShopItem matchedItem = null;
-            
-            for (ShopItem item : cartContents) {
-                if (item.getID().equals(forRemoval.getID())) {
-                    matchedItem = item;              
-                }
-            }
-            cartContents.remove(matchedItem);                        
-            
-            currentSession.setAttribute("userCart", cartContents);
-            response.sendRedirect("checkout.jsp");
-            return;
-        }
+        String wantsBack = request.getParameter("continueShop");
+        String wantsOut = request.getParameter("logoutExit");
         
         if (wantsBack != null) {
+            ArrayList<ShopItem> newList = new ArrayList<>();
+            double newTotal = 0.0;
+            currentSession.setAttribute("userCart", newList);
+            currentSession.setAttribute("totalCost", newTotal);
             response.sendRedirect("shop.jsp");
             return;
         }
         
-        if (wantsProceed != null) {
-            response.sendRedirect("checkout-success.jsp");
+        if (wantsOut != null) {            
+            currentSession.invalidate();
+            response.sendRedirect("landing.jsp");
             return;
         }
         
-        response.sendRedirect("checkout.jsp");
-        return;
+        /*
+        response.setContentType("text/html;charset=UTF-8");
+        try ( PrintWriter out = response.getWriter()) {
+             
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet SuccessServlet</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet SuccessServlet at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
+        */
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
