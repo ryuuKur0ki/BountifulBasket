@@ -47,8 +47,11 @@
                     <h1>Our Products</h1>
                     <hr class="line-break">
                     <div class="stock-holder">                                                
+                        
                         <%                        
                             ArrayList<ShopItem> stockList = new ShopInitializer().getStock();
+                            ArrayList<ShopItem> currentCart = (ArrayList<ShopItem>) session.getAttribute("userCart");
+                            CartUtils utility = new CartUtils();
                             for (int i = 0; i < stockList.size(); i++) {
                                 ShopItem currentItem = stockList.get(i);
                         %>
@@ -56,40 +59,48 @@
                             <img class="thumbnail" src="${pageContext.request.contextPath}/sources/img/<%=currentItem.getPic()%>">
                             <h3><%out.print(currentItem.getName());%></h3>
                             <p>₱<%out.print(currentItem.getPrice());%></p>
-                            <%-- TO DO: change condition to != once testing is done. --%> 
                             <%
-                                if (session.getAttribute("userID") != null) {
+                                if ( (session.getAttribute("userID") != null) && !utility.inList(currentCart, currentItem.getID()) ){
                             %>
                             <form action="CartProcess.do" method="post">         
-                                <button class="addCartButton" type="submit" name="selectedItem" value="<%=currentItem.getID()%>">Add to Cart</button>
-                                <%--<label for="selectedItem">Add to Cart</label>                                
-                                <input class="addCartButton" type="submit" name="selectedItem" value="<%=currentItem.getID()%>">--%>                             
+                                <button class="addCartButton" type="submit" name="selectedItem" value="<%=currentItem.getID()%>">Add to Cart</button>             
                             </form>
-                            <%  } %>                        
+                            <%  }
+                                else if ((session.getAttribute("userID") != null) && utility.inList(currentCart, currentItem.getID())) { %>
+                            <button class="addCartButton" disabled>In Cart</button>
+                            <%  } %>
                         </div>
-                        <%  } %> 
+                        <%  } %>
+                        
                     </div>                       
                 </div>
-                <%-- TO DO: change condition to != once testing is done. --%>
                 <% if (session.getAttribute("userID") != null) { %>
                 <div class="right-side">
                     <h1>Your Basket</h1>
                     <hr class="line-break">
                     <div class="cart-items">
+                        <form action="CartProcess.do" method="post"> 
                         <%                        
-                            for (ShopItem cartItem : (ArrayList<ShopItem>) session.getAttribute("userCart")) {
+                            for (ShopItem cartItem : currentCart) {
                         %>
-                            <h3><%out.print(cartItem.getName());%></h3>
-                            <p>₱<%out.print(cartItem.getPrice());%></p>
-                            <p><%out.print(cartItem.getQuantity());%></p>
+                            <div class="cart-item">
+                                <img class="smallthumb" src="${pageContext.request.contextPath}/sources/img/<%=cartItem.getPic()%>">                                
+                                <div class="cart-info">
+                                    <h3><%out.print(cartItem.getName());%></h3>
+                                    <p>₱<%out.print(cartItem.getPrice());%></p>                                    
+                                    <%--<p><%out.print(cartItem.getQuantity());%></p>--%>                                                                
+                                  
+                                    <input name="<%=cartItem.getID()%>" type="number" value="<%=cartItem.getQuantity()%>" min="1" max="99">
+                                </div>
+                                    <button class="removeCartButton" type="submit" name="removedItem" value="<%=cartItem.getID()%>">Remove</button>             
+                            </div>
                         <%
                             }                            
-                        %>
+                        %>                        
                     </div>
-                    <%-- TO DO: add action to checkout servlet. --%>
-                    <form method="post">
+                    <%-- TO DO: add action to checkout servlet. --%>                    
                         <input class="special-button" name="checkout" type="submit" value="Check Out">
-                    </form>
+                        </form>
                 </div>
                 <% }%>
             </div>

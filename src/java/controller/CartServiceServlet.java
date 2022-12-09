@@ -7,6 +7,7 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,68 +25,66 @@ public class CartServiceServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String buttonIDPressed = request.getParameter("selectedItem");
+        String addCartPressed = request.getParameter("selectedItem");
+        String removeCartPressed = request.getParameter("removedItem");
         ArrayList<ShopItem> stockList = new ShopInitializer().getStock();
+        CartUtils util = new CartUtils();
                 
         HttpSession currentSession = request.getSession();        
-        ArrayList<ShopItem> cartContents = (ArrayList<ShopItem>) currentSession.getAttribute("userCart");        
+        ArrayList<ShopItem> cartContents = (ArrayList<ShopItem>) currentSession.getAttribute("userCart");                        
         
-        ShopItem addedItem = retrieveItemByID(stockList, buttonIDPressed);
-        ShopItem oldItem = null;
+        if (addCartPressed != null) {
+            ShopItem addedItem = util.retrieveItemByID(stockList, addCartPressed);
+            /*
+            ShopItem oldItem = null;
         
-        for (ShopItem item : cartContents) {
-            if (item.getID().equals(addedItem.getID())) {
-                oldItem = item;
-                addedItem.setQuantity(addedItem.getQuantity() + oldItem.getQuantity());                
+            for (ShopItem item : cartContents) {
+                if (item.getID().equals(addedItem.getID())) {
+                    oldItem = item;
+                    addedItem.setQuantity(addedItem.getQuantity() + oldItem.getQuantity());                
+                }
             }
+        
+            cartContents.remove(oldItem);
+            */
+            cartContents.add(addedItem);
+            currentSession.setAttribute("userCart", cartContents);        
+            response.sendRedirect("shop.jsp");
         }
         
-        cartContents.remove(oldItem);        
-        cartContents.add(addedItem);
-        currentSession.setAttribute("userCart", cartContents);        
-        response.sendRedirect("shop.jsp");
+        if (removeCartPressed != null) {   
+            // Saves the current quantities in the numberboxes to the cart.
+            for (ShopItem item: cartContents) {
+                int selectedQuantity = Integer.parseInt(request.getParameter(item.getID()));
+                item.setQuantity(selectedQuantity);
+            }
         
-        /*
-        switch (buttonIDPressed) {
-            case ("cabbage") :
-                
-                cartContents.add(addedItem);
-                
-                break;
-                
-            case ("carrot") :
-                addedItem = retrieveItemByID(stockList, buttonIDPressed);
-                cartContents.add(addedItem);
-                
-                break;
-        }
-        
-        
-        response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
+            // Actually for removing items in the cart.
+            ShopItem forRemoval = util.retrieveItemByID(stockList, removeCartPressed);
+            ShopItem matchedItem = null;
             
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet CartServiceServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet CartServiceServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-        */
-    }
-    
-    private ShopItem retrieveItemByID(ArrayList<ShopItem> stock, String ID){
-        for (ShopItem item : stock) {
-            if (item.getID().equals(ID)) {
-                return item;
+            for (ShopItem item : cartContents) {
+                if (item.getID().equals(forRemoval.getID())) {
+                    matchedItem = item;              
+                }
             }
+            cartContents.remove(matchedItem);                        
+            
+            currentSession.setAttribute("userCart", cartContents);
+            response.sendRedirect("shop.jsp");
         }
-        return null;
-    }
-
+        
+        if (request.getParameter("checkout") != null) {
+            for (ShopItem item: cartContents) {
+                int selectedQuantity = Integer.parseInt(request.getParameter(item.getID()));
+                item.setQuantity(selectedQuantity);
+            }
+            RequestDispatcher rd = request.getRequestDispatcher("Checkout.do");
+            rd.forward(request, response);
+        }
+    }    
+    
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
