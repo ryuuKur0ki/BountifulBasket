@@ -16,6 +16,7 @@
 
             if (session.getAttribute("userID") == null) {
                 response.sendRedirect("landing.jsp");
+                return;
             }
         %>
         

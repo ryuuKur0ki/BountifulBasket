@@ -15,7 +15,9 @@
 
             if (session.getAttribute("userID") == null) {
                 response.sendRedirect("landing.jsp");
+                return;
             }
+            
             NumberFormat formatter = NumberFormat.getInstance();
             formatter.setMaximumFractionDigits(2);
             formatter.setMinimumFractionDigits(2);            

@@ -36,15 +36,15 @@ public class CheckoutHandler extends HttpServlet {
         ArrayList<ShopItem> cartContents = (ArrayList<ShopItem>) currentSession.getAttribute("userCart");        
         ArrayList<ShopItem> stockList = new ShopInitializer().getStock();
         CartUtils util = new CartUtils();
-        double totalCost = 0.0;
+        double totalCost = 0.0;    
         
-        for (ShopItem item : cartContents) {
+        for (ShopItem item : cartContents) {            
             item.setTotal();
             totalCost += item.getTotal();
         }
         currentSession.setAttribute("totalCost", totalCost);
         
-        if (removeCartPressed != null) {                      
+        if (removeCartPressed != null) {            
             // Actually for removing items in the cart.
             ShopItem forRemoval = util.retrieveItemByID(stockList, removeCartPressed);
             ShopItem matchedItem = null;
@@ -57,9 +57,16 @@ public class CheckoutHandler extends HttpServlet {
             cartContents.remove(matchedItem);                        
             
             currentSession.setAttribute("userCart", cartContents);
+            cartContents = (ArrayList<ShopItem>) currentSession.getAttribute("userCart");
+            totalCost = 0.0;
+            for (ShopItem item : cartContents) {            
+                item.setTotal();
+                totalCost += item.getTotal();
+            }
+            currentSession.setAttribute("totalCost", totalCost);
             response.sendRedirect("checkout.jsp");
             return;
-        }
+        }  
         
         if (wantsBack != null) {
             response.sendRedirect("shop.jsp");
